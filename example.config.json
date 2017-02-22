@@ -1,0 +1,5 @@
+{
+ "accessPoint":"https://livestream.adobe.net/api/1/stream/LIVESTREAM_URL",
+ "username":"username",
+ "password":"password"
+}
