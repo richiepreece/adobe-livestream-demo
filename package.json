@@ -1,0 +1,18 @@
+{
+  "name": "livestream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "process_starter.js",
+  "dependencies": {
+    "adobe-live-stream-connector": "^1.0.2",
+    "config": "^1.24.0",
+    "lodash": "^4.17.4",
+    "node-libcurl": "^1.0.0",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node livestream_listener"
+  },
+  "author": "Richie Preece <preece@adobe.com>"
+}
