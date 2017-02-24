@@ -8,7 +8,8 @@
     "config": "^1.24.0",
     "lodash": "^4.17.4",
     "node-libcurl": "^1.0.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "sql": "^0.74.0"
   },
   "devDependencies": {},
   "scripts": {

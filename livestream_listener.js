@@ -1,11 +1,17 @@
 const connector = require('./connector');
 
+var hits = 0;
+
 connector.on('hit', function (hit) {
   // TODO: process hit
-  console.log(hit);
+  ++hits;
+  // console.log(hit);
+});
 
-  // TODO: output data to database
+connector.on('writeToDB', function () {
+  console.log('write');
+
   return {
-    result: true
+    hits: hits
   };
 });
