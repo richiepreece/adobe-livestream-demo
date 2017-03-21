@@ -26,34 +26,16 @@ var connector = new AdobeLiveStreamConnector({
 });
 connector.connect();
 
-//setInterval(function () {
-//  _.each(callbacks.writeToDB, function (item) {
-//    var result = item();
-//    console.log(result); //TODO write to db
-//  });
-//}, 5000);
-
 function on(type, callback) {
   callbacks[type] = callbacks[type] || [];
   callbacks[type].push(callback);
 }
 
 // Exercise 3
-process.on("exit", function() {
-    write();
-});
 
-function write () {
-    _.each(callbacks.writeToDB, function (item) {
-    var result = item();
-    console.log(result); //TODO write to db
-  });
-}
 
 // Exercise 4
-setInterval(function () {
-  write();
-}, 5000)
+
 
 module.exports = {
   on: on

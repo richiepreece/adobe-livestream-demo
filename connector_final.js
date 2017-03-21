@@ -26,13 +26,6 @@ var connector = new AdobeLiveStreamConnector({
 });
 connector.connect();
 
-//setInterval(function () {
-//  _.each(callbacks.writeToDB, function (item) {
-//    var result = item();
-//    console.log(result); //TODO write to db
-//  });
-//}, 5000);
-
 function on(type, callback) {
   callbacks[type] = callbacks[type] || [];
   callbacks[type].push(callback);
