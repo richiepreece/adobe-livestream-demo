@@ -162,14 +162,51 @@ uniqueVisitors: _.keys(uniqueVisitors).length
 npm start
 ```
 ### Exercise #6: Total events, props, and evars.
-### Exercise #7: Single event.
-
-
-    
-    5. To to connector.js and add this block of code on line 42:
-    ```
-    process.on("exit", function() {
-        write();
+1. Go to `livestream_listener.js`.
+2. Add a variable for Events, Props, and eVars on about line 8;
+```
+var events = {};
+var props = {};
+var eVars = {};
+```
+3. Add processing for Events, Props, and eVars by adding this block of code under the Active Visitors section:
+```
+// All Events.
+if(hit.events) {
+    _.each(hit.events, function (item, key) {
+        events[key] = events[key] ? events[key] + 1 : 1;
     });
-    ```
+}
+
+// All Props.
+if(hit.props) {
+    _.each(hit.props, function (item, key) {
+        props[key] = props[key] ? props[key] + 1 : 1;
+        props[key] = props[key] || {};
+        props[key][item] = props[key][item] ? props[key][item] + 1 : 1;
+    });
+}
+
+// All eVars.
+if(hit.evars && hit.evars.evars) {
+    _.each(hit.evars.evars, function (item, key) {
+        eVars[key] = eVars[key] || {};
+        eVars[key][item] = eVars[key][item] ? eVars[key][item] + 1 : 1;
+    });
+}
+```
+4. Update the `result` variable on line 33 to be:
+```
+uniqueVisitors: _.keys(uniqueVisitors).length,
+events: events,
+props: props,
+eVars: eVars
+```
+5. Save `livestream_listener.js`.
+6. Run the app in the terminal:
+```
+npm start
+```
+### Exercise #7: Single event.
+Extra Credit.
 

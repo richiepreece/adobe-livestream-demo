@@ -38,10 +38,22 @@ function on(type, callback) {
   callbacks[type].push(callback);
 }
 
-// Exercise 2
+// Exercise 3
 process.on("exit", function() {
     write();
 });
+
+function write () {
+    _.each(callbacks.writeToDB, function (item) {
+    var result = item();
+    console.log(result); //TODO write to db
+  });
+}
+
+// Exercise 4
+setInterval(function () {
+  write();
+}, 5000)
 
 module.exports = {
   on: on

@@ -5,6 +5,9 @@ const _ = require('lodash');
 var hits = 0;
 var recentHits = 0;
 var uniqueVisitors = {};
+var events = {};
+var props = {};
+var eVars = {};
 
 var stopAfter = 1000;
 
@@ -18,6 +21,30 @@ connector.on('hit', function (hit) {
     // Calculate Active Visitors on site.
     if(!uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh]) {
         uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh] = true;
+    }
+    
+    // All Events.
+    if(hit.events) {
+        _.each(hit.events, function (item, key) {
+            events[key] = events[key] ? events[key] + 1 : 1;
+        });
+    }
+   
+    // All Props.
+    if(hit.props) {
+        _.each(hit.props, function (item, key) {
+            props[key] = props[key] ? props[key] + 1 : 1;
+            props[key] = props[key] || {};
+            props[key][item] = props[key][item] ? props[key][item] + 1 : 1;
+        });
+    }
+    
+    // All eVars.
+    if(hit.evars && hit.evars.evars) {
+        _.each(hit.evars.evars, function (item, key) {
+            eVars[key] = eVars[key] || {};
+            eVars[key][item] = eVars[key][item] ? eVars[key][item] + 1 : 1;
+        });
     }
 
     console.log('hit');
@@ -33,7 +60,10 @@ connector.on('writeToDB', function () {
     var result = {
         totalHits: hits,
         recentHits: recentHits,
-        uniqueVisitors: _.keys(uniqueVisitors).length
+        uniqueVisitors: _.keys(uniqueVisitors).length,
+        events: events,
+        props: props,
+        eVars: eVars
     };
     
     recentHits = 0;
