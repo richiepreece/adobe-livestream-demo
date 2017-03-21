@@ -65,6 +65,10 @@ if (hits == stopAfter) {
 ```
 var stopAfter = 1;
 ```
+5. Run the app in the terminal:
+```
+npm start
+```
 ### Exercise #3: Count total hits.
 1. To display the number of hits, we need a place in the app to do so when our processing is complete.
 2. Go to line 23 of `livestream_listener.js`.
@@ -81,7 +85,7 @@ return result;
 ```
 console.log('hit');
 ```
-6. 7. Save `livestream_listener.js`.
+6. Save `livestream_listener.js`.
 7. Go to `connector.js` line 42.
 8. Add this block of code:
 ```
@@ -97,6 +101,10 @@ function write () {
 }
 ```
 9. Save `connector.js`.
+10. Run the app in the terminal:
+```
+npm start
+```
 ### Exercise #4: Count hits overtime.
 1. Go to `livestream_listener.js`.
 2. On line 6, add the following variables:
@@ -127,8 +135,32 @@ setInterval(function () {
 }, 5000)
 ```
 10. Save `connector.js`.
-
-### Exercise #5: Active visits on site.
+11. Run the app in the terminal:
+```
+npm start
+```
+### Exercise #5: Active Visitors on site.
+1. Go to `livestream_listener.js` and add a variable for Active Visitors:
+```
+var uniqueVisitors = {};
+```
+2. Add the code to calculate Active Visitors at about line 18:
+```
+// Calculate Active Visitors on site.
+if(!uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh]) {
+    uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh] = true;
+}
+```
+3. Update the `result` variable on line 33 to be:
+```
+recentHits: recentHits,
+uniqueVisitors: _.keys(uniqueVisitors).length
+```
+5. Save `livestream_listener.js`.
+6. Run the app in the terminal:
+```
+npm start
+```
 ### Exercise #6: Total events, props, and evars.
 ### Exercise #7: Single event.
 
