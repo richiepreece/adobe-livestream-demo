@@ -53,21 +53,21 @@ This lab uses the following software:
     ```
     2. To stop the app, push `control` + `c` at the same time on the keyboard.
 ### Exercise #2: Examine the Hit
-    1. Go to livestream_listener.js line 15.
-    2. Enter this block of code:
-    ```
-    // Kill after after a certain # of hits.
-    if (hits == stopAfter) {
-        process.exit();
-    }
-    ```
-    4. Add the `stopAfter` variable on line 7 with a value of `1`;
-    ```
-    var stopAfter = 1;
-    ```
+1. Go to line 15 of  `livestream_listener.js`.
+2. Enter this block of code:
+```
+// Kill after after a certain # of hits.
+if (hits == stopAfter) {
+    process.exit();
+}
+```
+4. Add the `stopAfter` variable on line 7 with a value of `1`;
+```
+var stopAfter = 1;
+```
 ### Exercise #3: Count total hits.
 1. To display the number of hits, we need a place in the app to do so when our processing is complete.
-2. Go to `livestream_listener.js` line 23.
+2. Go to line 23 of `livestream_listener.js`.
 3. Add this block of code:
 ```
 var result = {
