@@ -11,3 +11,5 @@ cp example.config.json config.json
 npm install
 npm start
 ```
+
+Step #1
