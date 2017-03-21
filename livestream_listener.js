@@ -8,7 +8,7 @@ connector.on('hit', function (hit) {
     // Increment total hit counter.
     ++hits;
 
-    console.log('hit');
+    console.log(hit);
     
     // Exercise 2: Examine the hit.
 
