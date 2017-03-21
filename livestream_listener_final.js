@@ -3,18 +3,14 @@ const _ = require('lodash');
 
 // Total hits
 var hits = 0;
-var recentHits = 0;
 
-var stopAfter = 1000;
+var stopAfter = 1;
 
 connector.on('hit', function (hit) {
     // Increment total hit counter.
     ++hits;
-    
-    // Increment total hit counter.
-    ++recentHits;
 
-    console.log('hit');
+    // console.log(hit);
     
     // Exercise 2: Examine the hit.
     // Kill after after a certain # of hits.
@@ -24,12 +20,5 @@ connector.on('hit', function (hit) {
 });
 
 connector.on('writeToDB', function () {
-    var result = {
-        totalHits: hits,
-        recentHits: recentHits
-    };
-    
-    recentHits = 0;
-    
-    return result;
+  
 });
