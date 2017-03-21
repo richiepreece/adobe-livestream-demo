@@ -53,7 +53,7 @@ This lab uses the following software:
     ```
     2. To stop the app, push `control` + `c` at the same time on the keyboard.
 ### Exercise #2: Examine the Hit
-1. Go to line 15 of  `livestream_listener.js`.
+1. Go to line 14 of  `livestream_listener.js`.
 2. Enter this block of code:
 ```
 // Kill after after a certain # of hits.
@@ -61,11 +61,12 @@ if (hits == stopAfter) {
     process.exit();
 }
 ```
-4. Add the `stopAfter` variable on line 7 with a value of `1`;
+4. Add the `stopAfter` variable on about line 6 with a value of `1`;
 ```
 var stopAfter = 1;
 ```
-5. Run the app in the terminal:
+5. Save `livestream_listener.js`.
+6. Run the app in the terminal:
 ```
 npm start
 ```
@@ -80,13 +81,13 @@ var result = {
 
 return result;
 ```
-4. Change the `stopAfter` value to `10` on line 7.
-5. Change the `console.log` on line 13 to give simple feedback when a hit is received.
+4. Change the `stopAfter` value to `10` on line 6.
+5. Change the `console.log` on line 12 to give simple feedback when a hit is received.
 ```
 console.log('hit');
 ```
 6. Save `livestream_listener.js`.
-7. Go to `connector.js` line 42.
+7. Go to `connector.js` line 35.
 8. Add this block of code:
 ```
 process.on("exit", function() {
@@ -107,17 +108,17 @@ npm start
 ```
 ### Exercise #4: Count hits overtime.
 1. Go to `livestream_listener.js`.
-2. On line 6, add the following variables:
+2. On line 7, add the following variables:
 ```
 var recentHits = 0;
 ```
 3. Change the `stopAfter` value to `1000` on line 9.
-4. Add
+4. On line 12, add:
 ```
 // Increment total hit counter.
-    ++recentHits;
+++recentHits;
 ```
-5. Update line 28 to look like this:
+5. Update line 27 to look like this:
 ```
 totalHits: hits,
 recentHits: recentHits
@@ -128,7 +129,7 @@ recentHits = 0;
 ```
 7. Save `livestream_listener.js`.
 8. Go to `connector.js`.
-9. Add this block of code on line 54:
+9. Add this block of code on line 47:
 ```
 setInterval(function () {
   write();
@@ -140,11 +141,11 @@ setInterval(function () {
 npm start
 ```
 ### Exercise #5: Active Visitors on site.
-1. Go to `livestream_listener.js` and add a variable for Active Visitors:
+1. Go to `livestream_listener.js` and add a variable for Active Visitors on line 8:
 ```
 var uniqueVisitors = {};
 ```
-2. Add the code to calculate Active Visitors at about line 18:
+2. Add the code to calculate Active Visitors at about line 17:
 ```
 // Calculate Active Visitors on site.
 if(!uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh]) {
