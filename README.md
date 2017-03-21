@@ -41,14 +41,14 @@ cp example.config.json config.json
     2. Select the "File" (drop-down) -> "Open Folder".
         1. Select the folder of the app in your home directory.
     4. Update the config
-    5. Open "config.json"
-        1. Update the URL
-        2. Update the username
-        3. Update the password
+        1. Open "config.json"
+        2. Update the URL
+        3. Update the username
+        4. Update the password
     6. Change the name of the config file
 4. Run the app.
 ```
->npm start
+npm start
 ```
 
 ### Exercise #2: Examine the Hit
