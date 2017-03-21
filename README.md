@@ -26,26 +26,26 @@ This lab uses the following software:
     2. Click the download green button
     3. Select “Download ZIP”
 2. Move the file and unzip it.
-** Using Finder, locate the file in the Downloads folder.
-** Move the file to your home directory.
-** Unzip the file by double clicking it.
+    1. Using Finder, locate the file in the Downloads folder.
+    2. Move the file to your home directory.
+    3. Unzip the file by double clicking it.
 3. Prepare the NodeJS app.
-** Go to the terminal and navigate to the folder.
-** Run “npm install” and wait.
-** Copy the config file
+    1. Go to the terminal and navigate to the folder.
+    2. Run “npm install” and wait.
+    3. Copy the config file
 ```
->cp example.config.json config.json
+cp example.config.json config.json
 ```
 4. Configure the app.
-** Open the code in Brackets.
-*** "File" (drop-down) -> "Open Folder".
-*** Select the folder of hte app in your home directory.
-** Update the config
-*** Open "config.json"
-*** Update the URL
-*** Update the username
-*** Update the password
-** Change the name of the config file
+    1. Open the code in Brackets.
+    2. Select the "File" (drop-down) -> "Open Folder".
+        1. Select the folder of the app in your home directory.
+    4. Update the config
+    5. Open "config.json"
+        1. Update the URL
+        2. Update the username
+        3. Update the password
+    6. Change the name of the config file
 4. Run the app.
 ```
 >npm start
