@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+      var socket = io();
+
+      socket.on('results', function (data) {
+        console.log(data);
+
+        document.getElementById('total').innerHTML = JSON.stringify(data.totalHits, undefined, 2);
+        document.getElementById('recent').innerHTML = JSON.stringify(data.recentHits, undefined, 2);
+        document.getElementById('unique').innerHTML = JSON.stringify(data.uniqueVisitors, undefined, 2);
+        document.getElementById('events').innerHTML = JSON.stringify(data.events, undefined, 2);
+        // document.getElementById('desks').innerHTML = JSON.stringify(data.desks, undefined, 2);
+        // document.getElementById('feedback').innerHTML = JSON.stringify(data.texts, undefined, 2);
+      });
+    </script>
+
+    <div id="total"></div>
+    <div id="recent"></div>
+    <div id="unique"></div>
+    <div id="events"></div>
+    <!-- <div id="desks"></div> -->
+    <!-- <div id="feedback"></div> -->
+  </body>
+</html>

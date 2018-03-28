@@ -2,6 +2,7 @@ const request = require('request');
 require('request').debug = true;
 const fs = require('fs');
 const _ = require('lodash');
+const webserver = require('./webserver');
 
 var config = JSON.parse(fs.readFileSync(__dirname + '/config.json'));
 var callbacks = {};
@@ -39,9 +40,16 @@ process.on("exit", function() {
 function write () {
     _.each(callbacks.writeToDB, function (item) {
     var result = item();
-    console.log(result); //TODO write to db
+    // console.log(result); //TODO write to db
+    webserver.emit('results', result);
   });
 }
+
+webserver.on('deskHit', function (desk) {
+  _.each(callbacks.deskHit, function(item) {
+    item(desk);
+  });
+});
 
 // Exercise 4
 setInterval(function () {
