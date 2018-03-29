@@ -1,7 +1,8 @@
 const request = require('request');
-require('request').debug = true;
+// require('request').debug = true;
 const fs = require('fs');
 const _ = require('lodash');
+const webserver = require('./webserver');
 
 var config = JSON.parse(fs.readFileSync(__dirname + '/config.json'));
 var callbacks = {};
@@ -37,6 +38,13 @@ function on(type, callback) {
 // Exercise 4
 
 
+webserver.on('deskHit', function (desk) {
+  _.each(callbacks.deskHit, function(item) {
+    item(desk);
+  });
+});
+
 module.exports = {
-  on: on
+  on: on,
+  ping: function () { request('http://' + config.ip + ':3000/hit/' + config.deskNum); }
 };

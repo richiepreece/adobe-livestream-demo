@@ -9,12 +9,13 @@ connector.on('hit', function (hit) {
     ++hits;
 
     console.log(hit);
-    
+    connector.ping();
+
     // Exercise 2: Examine the hit.
 
-    
+
 });
 
 connector.on('writeToDB', function () {
-    
+
 });

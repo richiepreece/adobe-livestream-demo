@@ -1,5 +1,5 @@
 const request = require('request');
-require('request').debug = true;
+// require('request').debug = true;
 const fs = require('fs');
 const _ = require('lodash');
 const webserver = require('./webserver');
@@ -45,16 +45,16 @@ function write () {
   });
 }
 
+// Exercise 4
+setInterval(function () {
+  write();
+}, 5000)
+
 webserver.on('deskHit', function (desk) {
   _.each(callbacks.deskHit, function(item) {
     item(desk);
   });
 });
-
-// Exercise 4
-setInterval(function () {
-  write();
-}, 5000)
 
 module.exports = {
   on: on,

@@ -67,7 +67,7 @@ connector.on('hit', function (hit) {
     // Exercise 2: Examine the hit.
     // Kill after after a certain # of hits.
     if (hits == stopAfter) {
-        // process.exit();
+        process.exit();
     }
 });
 
