@@ -38,14 +38,13 @@ This lab uses the following software:
     ```
 4. Configure the app.
     1. Open the code in Brackets.
-    2. Select the "File" (drop-down) -> "Open Folder".
-        1. Select the folder of the app in your home directory.
+        1. Select the "File" (drop-down) -> "Open Folder".
+        2. Select the folder of the app in your home directory.
     4. Update the config
         1. Open "config.json"
         2. Update the URL
         3. Update the username
         4. Update the password
-    6. Change the name of the config file
 4. Run the app.
     1. To start the app, type this command in the terminal:
     ```
