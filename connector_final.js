@@ -40,15 +40,15 @@ process.on("exit", function() {
 function write () {
     _.each(callbacks.writeToDB, function (item) {
     var result = item();
-    // console.log(result); //TODO write to db
-    webserver.emit('results', result);
+    console.log(result); //TODO write to db
+    // webserver.emit('results', result);
   });
 }
 
 // Exercise 4
 setInterval(function () {
   write();
-}, 5000)
+}, 5000);
 
 webserver.on('deskHit', function (desk) {
   _.each(callbacks.deskHit, function(item) {

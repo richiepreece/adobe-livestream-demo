@@ -12,7 +12,7 @@ var desks = {};
 var texts = [];
 var eventData = [];
 
-var stopAfter = 1000;
+var stopAfter = 100;
 
 connector.on('hit', function (hit) {
     // Increment total hit counter.
