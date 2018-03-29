@@ -54,7 +54,7 @@ This lab uses the following software:
     ```
     2. To stop the app, push `control` + `c` at the same time on the keyboard.
 ### Exercise #2: Examine the Hit
-1. Go to line 14 of  `livestream_listener.js`.
+1. Go to line 23 of  `livestream_listener.js`.
 2. Enter this block of code:
 ```
 // Kill after after a certain # of hits.
@@ -62,7 +62,7 @@ if (hits == stopAfter) {
     process.exit();
 }
 ```
-4. Add the `stopAfter` variable on about line 6 with a value of `1`;
+4. Add the `stopAfter` variable on about line 14 with a value of `1`;
 ```
 var stopAfter = 1;
 ```
@@ -73,7 +73,7 @@ npm start
 ```
 ### Exercise #3: Count total hits.
 1. To display the number of hits, we need a place in the app to do so when our processing is complete.
-2. Go to line 23 of `livestream_listener.js`.
+2. Go to line 32 of `livestream_listener.js`.
 3. Add this block of code:
 ```
 var result = {
@@ -89,13 +89,13 @@ var result = {
 
 return result;
 ```
-4. Change the `stopAfter` value to `10` on line 6.
-5. Change the `console.log` on line 12 to give simple feedback when a hit is received.
+4. Change the `stopAfter` value to `10` on line 14.
+5. Change the `console.log` on line 20 to give simple feedback when a hit is received.
 ```
 console.log('hit');
 ```
 6. Save `livestream_listener.js`.
-7. Go to `connector.js` line 35.
+7. Go to `connector.js` line 36.
 8. Add this block of code:
 ```
 process.on("exit", function() {
@@ -117,69 +117,46 @@ npm start
 ```
 ### Exercise #4: Count hits overtime.
 1. Go to `livestream_listener.js`.
-2. On line 7, add the following variables:
-```
-var recentHits = 0;
-```
-3. Change the `stopAfter` value to `1000` on line 9.
-4. On line 12, add:
+2. Change the `stopAfter` value to `1000` on line 14.
+3. On line 19, add:
 ```
 // Increment total hit counter.
 ++recentHits;
 ```
-5. Update line 27 to look like this:
-```
-totalHits: hits,
-recentHits: recentHits
-```
-6. Add this block under the `result` variable:
+4. Go to line 45 and add this block under the `result` variable:
 ```
 recentHits = 0;
 ```
-7. Save `livestream_listener.js`.
-8. Go to `connector.js`.
-9. Add this block of code on line 47:
+5. Save `livestream_listener.js`.
+6. Go to `connector.js`.
+7. Add this block of code on line 49:
 ```
 setInterval(function () {
   write();
-}, 5000)
+}, 5000);
 ```
-10. Save `connector.js`.
-11. Run the app in the terminal:
+8. Save `connector.js`.
+9. Run the app in the terminal:
 ```
 npm start
 ```
-### Exercise #5: Active Visitors on site.
-1. Go to `livestream_listener.js` and add a variable for Active Visitors on line 8:
+10. To stop the app, push `control` + `c` at the same time on the keyboard.
+### Exercise #5: Unique Visitors on site.
+1. Go to `livestream_listener.js` and add code for Unique Visitors on site at about line 21:
 ```
-var uniqueVisitors = {};
-```
-2. Add the code to calculate Active Visitors at about line 17:
-```
-// Calculate Active Visitors on site.
+// Calculate Unique Visitors on site.
 if(!uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh]) {
     uniqueVisitors[hit.visIdLow + '' + hit.visIdHigh] = true;
 }
 ```
-3. Update the `result` variable on line 33 to be:
-```
-recentHits: recentHits,
-uniqueVisitors: _.keys(uniqueVisitors).length
-```
-5. Save `livestream_listener.js`.
-6. Run the app in the terminal:
+2. Save `livestream_listener.js`.
+3. Run the app in the terminal:
 ```
 npm start
 ```
 ### Exercise #6: Total events, props, and evars.
 1. Go to `livestream_listener.js`.
-2. Add a variable for Events, Props, and eVars on about line 8;
-```
-var events = {};
-var props = {};
-var eVars = {};
-```
-3. Add processing for Events, Props, and eVars by adding this block of code under the Active Visitors section:
+2. Add processing for Events, Props, and eVars by adding this block of code under the Unique Visitors section on line 26:
 ```
 // All Events.
 if(hit.events) {
@@ -205,18 +182,33 @@ if(hit.evars && hit.evars.evars) {
     });
 }
 ```
-4. Update the `result` variable on line 33 to be:
-```
-uniqueVisitors: _.keys(uniqueVisitors).length,
-events: events,
-props: props,
-eVars: eVars
-```
-5. Save `livestream_listener.js`.
-6. Run the app in the terminal:
+3. Save `livestream_listener.js`.
+4. Run the app in the terminal:
 ```
 npm start
 ```
 ### Exercise #7: Single event.
-Extra Credit.
+1. Go to `livestream_listener.js`.
+2. Add processing for Single Events by adding this block of code under the All Evars section on line 50:
+```
+// Single Events
+if(hit.events) {
+    _.each(hit.events, function (item, key) {
+        eventData.push({
+            eventName: key,
+            latitude: hit.geoLatitude,
+            longitude: hit.geoLongitude
+        });
+    });
+}
+```
+3. Add this line of code at line 85:
+```
+eventData.length = 0;
+```
+4. Save `livestream_listener.js`.
+5. Run the app in the terminal:
+```
+npm start
+```
 
