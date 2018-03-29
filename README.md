@@ -45,6 +45,8 @@ This lab uses the following software:
         2. Update the URL
         3. Update the username
         4. Update the password
+        5. Update the ip
+        6. Update the deskNum
 4. Run the app.
     1. To start the app, type this command in the terminal:
     ```
