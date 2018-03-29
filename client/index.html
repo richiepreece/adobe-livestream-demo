@@ -12,20 +12,29 @@
       socket.on('results', function (data) {
         console.log(data);
 
-        document.getElementById('total').innerHTML = JSON.stringify(data.totalHits, undefined, 2);
-        document.getElementById('recent').innerHTML = JSON.stringify(data.recentHits, undefined, 2);
-        document.getElementById('unique').innerHTML = JSON.stringify(data.uniqueVisitors, undefined, 2);
-        document.getElementById('events').innerHTML = JSON.stringify(data.events, undefined, 2);
-        // document.getElementById('desks').innerHTML = JSON.stringify(data.desks, undefined, 2);
-        // document.getElementById('feedback').innerHTML = JSON.stringify(data.texts, undefined, 2);
+        document.getElementById('total').innerHTML = JSON.stringify(data.totalHits, null, 2).split('\n').join('<br>').split(' ').join('&nbsp;');
+        document.getElementById('recent').innerHTML = JSON.stringify(data.recentHits, null, 2).split('\n').join('<br>').split(' ').join('&nbsp;');
+        document.getElementById('unique').innerHTML = JSON.stringify(data.uniqueVisitors, null, 2).split('\n').join('<br>').split(' ').join('&nbsp;');
+        document.getElementById('events').innerHTML = JSON.stringify(data.events, null, 2).split('\n').join('<br>').split(' ').join('&nbsp;');
+        document.getElementById('eventData').innerHTML = JSON.stringify(data.eventData, null, 2).split('\n').join('<br>').split(' ').join('&nbsp;');
+        // document.getElementById('desks').innerHTML = JSON.stringify(data.desks, null, 2).split('\n').join('<br>').split(' ').join('&nbsp;');
       });
     </script>
 
+    <strong>Total Hits:</strong>
     <div id="total"></div>
+    <br>
+    <strong>Recent Hits:</strong>
     <div id="recent"></div>
+    <br>
+    <strong>Unique Visitors:</strong>
     <div id="unique"></div>
+    <br>
+    <strong>Events Seen:</strong>
     <div id="events"></div>
+    <br>
+    <strong>Events in the past 5 seconds:</strong>
+    <div id="eventData"></div>
     <!-- <div id="desks"></div> -->
-    <!-- <div id="feedback"></div> -->
   </body>
 </html>

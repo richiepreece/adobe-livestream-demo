@@ -1,8 +1,5 @@
 const connector = require('./connector_final');
 const _ = require('lodash');
-const fs = require('fs');
-const request = require('request');
-var config = JSON.parse(fs.readFileSync(__dirname + '/config.json'));
 
 // Total hits
 var hits = 0;
@@ -13,6 +10,7 @@ var props = {};
 var eVars = {};
 var desks = {};
 var texts = [];
+var eventData = [];
 
 var stopAfter = 1000;
 
@@ -52,23 +50,30 @@ connector.on('hit', function (hit) {
         });
     }
 
-    if(hit.events && hit.events.event101) {
-        request('http://' + config.ip + ':3000/hit/' + config.deskNum);
+    if(hit.events) {
+        _.each(hit.events, function (item, key) {
+            eventData.push({
+                eventName: key,
+                latitude: hit.geoLatitude,
+                longitude: hit.geoLongitude
+            });
+        });
     }
 
-    // console.log('hit');
+    if(hit.events && hit.events.event101) {
+        connector.ping();
+    }
 
     // Exercise 2: Examine the hit.
     // Kill after after a certain # of hits.
     if (hits == stopAfter) {
-        process.exit();
+        // process.exit();
     }
 });
 
 connector.on('deskHit', function (desk) {
     desks[desk] = desks[desk] || 0;
     desks[desk] = desks[desk] + 1;
-    console.log('desk hit', desk);
 });
 
 connector.on('writeToDB', function () {
@@ -80,10 +85,11 @@ connector.on('writeToDB', function () {
         props: props,
         eVars: eVars,
         desks: desks,
-        texts: texts
+        eventData: eventData.slice()
     };
 
     recentHits = 0;
+    eventData.length = 0;
 
     return result;
 });

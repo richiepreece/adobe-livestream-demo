@@ -57,5 +57,6 @@ setInterval(function () {
 }, 5000)
 
 module.exports = {
-  on: on
+  on: on,
+  ping: function () { request('http://' + config.ip + ':3000/hit/' + config.deskNum); }
 };

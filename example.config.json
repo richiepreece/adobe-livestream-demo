@@ -1,5 +1,7 @@
 {
  "accessPoint":"https://livestream.adobe.net/api/1/stream/LIVESTREAM_URL",
  "username":"username",
- "password":"password"
+ "password":"password",
+ "ip": "teacher_ip",
+ "deskNum": "desk_number",
 }
