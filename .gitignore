@@ -2,3 +2,5 @@ config.json
 node_modules/
 *.token
 npm-debug.log
+package-lock.json
+test.txt
