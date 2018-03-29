@@ -77,7 +77,14 @@ npm start
 3. Add this block of code:
 ```
 var result = {
-    totalHits: hits
+    totalHits: hits,
+    recentHits: recentHits,
+    uniqueVisitors: _.keys(uniqueVisitors).length,
+    events: events,
+    props: props,
+    eVars: eVars,
+    desks: desks,
+    eventData: eventData.slice()
 };
 
 return result;
@@ -99,6 +106,7 @@ function write () {
     _.each(callbacks.writeToDB,     function (item) {
         var result = item();
         console.log(result); //TODO write to db
+        webserver.emit('results', result);
     });
 }
 ```
