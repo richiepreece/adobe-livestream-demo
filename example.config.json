@@ -3,5 +3,5 @@
  "username":"username",
  "password":"password",
  "ip": "teacher_ip",
- "deskNum": "desk_number",
+ "deskNum": "desk_number"
 }
